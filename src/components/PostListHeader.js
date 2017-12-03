@@ -20,7 +20,6 @@ class PostListHeader extends Component {
             if (currentPost[value] < nextPost[value]) return 1
             return 0
         });
-        debugger;
         this.props.sortPosts(sortedPost);
     }
 
