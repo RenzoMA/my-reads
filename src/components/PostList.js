@@ -10,9 +10,13 @@ class PostList extends Component {
     state = {
         open: false,
         snackBarOpen: false,
+        sortBy: 'timestamp'
     };
     isComponentMounted = false;
 
+    updateSortBy = (value) => {
+        this.setState({ sortBy: value });
+    }
     componentWillReceiveProps(nextProps) {
         const nextCategoryName = nextProps.match.params.categoryName;
         const { categoryName } = this.props.match.params;
@@ -52,7 +56,7 @@ class PostList extends Component {
         return (
             <div className="post-list-container">
                 <PostCreateDialog onPostCreated={this.onPostCreated} />
-                <PostListHeader categoryName={categoryName} />
+                <PostListHeader sortBy={this.state.sortBy} updateSortBy={this.updateSortBy} categoryName={categoryName} />
                 <div className="cards-container">
                     {posts.length > 0 ?
                         posts.map((post) => {

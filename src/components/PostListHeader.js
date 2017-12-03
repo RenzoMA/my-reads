@@ -7,13 +7,10 @@ import * as actions from './../actions'
 
 class PostListHeader extends Component {
 
-    state = {
-        sortBy: 'timestamp'
-    }
 
     handleChange = (event, index, value) => {
         const { posts } = this.props;
-        this.setState({ sortBy: value });
+        this.props.updateSortBy(value);
         const copy = Object.assign([], posts);
         const sortedPost = copy.sort((currentPost, nextPost) => {
             if (currentPost[value] > nextPost[value]) return -1
@@ -29,7 +26,7 @@ class PostListHeader extends Component {
             <SelectField
                 placeholder='test'
                 floatingLabelText="Sort by"
-                value={this.state.sortBy}
+                value={this.props.sortBy}
                 onChange={this.handleChange}>
                 <MenuItem value={'timestamp'} primaryText="Date" />
                 <MenuItem value={'voteScore'} primaryText="Score" />
