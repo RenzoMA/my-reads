@@ -37,6 +37,8 @@ class PostList extends Component {
     }
     onPostCreated = () => {
         this.setState({ snackBarOpen: true });
+        const { categoryName } = this.props.match.params;
+        this.fetchPosts(categoryName);
         setTimeout(() => {
             if (this.isComponentMounted) {
                 this.setState({ snackBarOpen: false })
