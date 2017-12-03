@@ -5,7 +5,7 @@ import { formatDate } from './../helpers/dateHelper'
 
 export function PostView({ post }) {
     return (<div className="card-item">
-        <Link to={`/post/${post.id}`}>
+        <Link to={`/${post.category}/${post.id}`}>
             <Card>
                 <CardHeader className='card-header'
                     avatar={`https://cdn1.iconfinder.com/data/icons/ninja-things-1/1772/ninja-simple-512.png`}
@@ -16,8 +16,8 @@ export function PostView({ post }) {
                     {post.body}
                 </CardText>
                 <CardText className="card-vote">
-                    {post.voteScore} votes
-            </CardText>
+                    {`${post.voteScore} votes  ${post.commentCount} comments`}
+                </CardText>
             </Card>
         </Link>
     </div>

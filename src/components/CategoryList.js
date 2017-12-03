@@ -15,12 +15,12 @@ class CategoryList extends Component {
         return (<div className="side-nav">
             <List>
                 <Subheader>Categories</Subheader>
-                <Link className="side-nav-item" to="/category/all">
+                <Link className="side-nav-item" to="/all">
                     <ListItem primaryText="all" leftIcon={<ContentInbox />} />
                 </Link>
                 {
                     categories.map((category) => (
-                        <Link className="side-nav-item" key={category.name} to={`/category/${category.name}`}>
+                        <Link className="side-nav-item" key={category.name} to={`/${category.name}`}>
                             <ListItem primaryText={category.name} leftIcon={<ContentInbox />} />
                         </Link>
                     ))

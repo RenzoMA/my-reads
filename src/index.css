@@ -110,3 +110,6 @@ body {
 .edit-comment-container {
   padding-left: 18px;
 }
+.not-found {
+  align-self: flex-start;
+}

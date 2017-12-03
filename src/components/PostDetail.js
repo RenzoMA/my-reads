@@ -116,6 +116,7 @@ export class PostDetail extends Component {
     render() {
         const style = { margin: 12 };
         const { detail, comments } = this.props.post;
+        const { redirect } = this.state;
         const actions = [
             <FlatButton
                 label="Cancel"
@@ -128,10 +129,13 @@ export class PostDetail extends Component {
                 onClick={this.handleDeletePostConfirm}
             />,
         ];
-        const { redirect } = this.state;
-
+        if (detail != null) {
+            if (!detail.author) {
+                return (<div className="not-found">Resource not found</div>)
+            }
+        }
         if (redirect) {
-            return <Redirect to='/category/all' />;
+            return <Redirect to='/all' />;
         }
         return (<div className="card-item-detail">
             {
