@@ -15,7 +15,13 @@ export function reducer(state = initialState, action) {
         case actions.VOTE_FOR_POST_DONE: {
             return {
                 ...state,
-                post: { ...state.post, detail: action.payload }
+                post: { ...state.post, detail: action.payload },
+                posts: state.posts.map((post) => {
+                    if (post.id === action.payload.id) {
+                        return action.payload
+                    }
+                    return post;
+                })
             }
         }
         case actions.FETCH_COMMENTS_DONE: {

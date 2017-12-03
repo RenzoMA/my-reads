@@ -12,7 +12,9 @@ import Popover from 'material-ui/Popover';
 import Menu from 'material-ui/Menu';
 import * as actions from './../actions';
 import { ListItem } from 'material-ui/List';
-import { formatDate } from './../helpers/dateHelper'
+import { formatDate } from './../helpers/dateHelper';
+import Thumbup from 'material-ui/svg-icons/action/thumb-up';
+import Thumbdown from 'material-ui/svg-icons/action/thumb-down';
 
 class CommentItem extends Component {
     state = {
@@ -76,6 +78,21 @@ class CommentItem extends Component {
         this.setState({ deleteDialogVisible: true });
         this.setState({ open: false });
     }
+    upVote = () => {
+        this.props.voteComment('upVote', this.props.comment.id)
+            .then(() => {
+                this.setState({ open: false });
+                this.props.onCommentEdited();
+            })
+
+    }
+    downVote = () => {
+        this.props.voteComment('downVote', this.props.comment.id)
+            .then(() => {
+                this.setState({ open: false });
+                this.props.onCommentEdited();
+            })
+    }
     render() {
         const style = { margin: 12 };
         const actions = [
@@ -102,7 +119,7 @@ class CommentItem extends Component {
                         secondaryText={
                             <p className="author-date-container">
                                 <span style={{ color: grey400 }}>{comment.author}</span>
-                                <span className="comment-date">{formatDate(comment.timestamp)}</span>
+                                <span className="comment-date">{`${comment.voteScore} votes - ${formatDate(comment.timestamp)}`}</span>
                             </p>
                         }
                     />
@@ -120,6 +137,8 @@ class CommentItem extends Component {
                         onRequestClose={this.handleRequestClose}
                     >
                         <Menu>
+                            <MenuItem onClick={this.upVote}><Thumbup /></MenuItem>
+                            <MenuItem onClick={this.downVote}><Thumbdown /></MenuItem>
                             <MenuItem primaryText="Edit" onClick={this.editCommentHandler} />
                             <MenuItem primaryText="Delete" onClick={this.deleteCommentHandler} />
                         </Menu>
@@ -155,7 +174,8 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
     return {
         updateComment: (comment) => dispatch(actions.updateComment(comment)),
-        deleteComment: (commentId) => dispatch(actions.deleteComment(commentId))
+        deleteComment: (commentId) => dispatch(actions.deleteComment(commentId)),
+        voteComment: (voteOption, commentId) => dispatch(actions.voteComment(voteOption, commentId))
     };
 }
 

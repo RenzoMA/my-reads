@@ -25,6 +25,24 @@ export const UPDATE_COMMENT = 'UPDATE_COMMENT';
 export const UPDATE_COMMENT_DONE = 'UPDATE_COMMENT_DONE';
 export const DELETE_COMMENT = "DELETE_COMMENT";
 export const DELETE_COMMENT_DONE = "DELETE_COMMENT_DONE";
+export const VOTE_COMMENT = "VOTE_COMMENT";
+export const VOTE_COMMENT_DONE = "VOTE_COMMENT_DONE";
+
+export function voteComment(voteOption, commentId) {
+    return function (dispatch) {
+        return service.voteComment(voteOption, commentId)
+            .then((response) => {
+                dispatch(voteCommentDone(response))
+            });
+    }
+}
+
+export function voteCommentDone(payload) {
+    return {
+        type: VOTE_COMMENT_DONE,
+        payload
+    }
+}
 
 export function deleteComment(commentId) {
     return function (dispatch) {

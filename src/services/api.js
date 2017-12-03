@@ -58,6 +58,14 @@ export function votePost(voteOption, postId) {
         body: JSON.stringify(option)
     }).then((res) => res.json())
 }
+export function voteComment(voteOption, commentId) {
+    let option = { option: voteOption };
+    return fetch(`${baseUrl}/comments/${commentId}`, {
+        method: 'POST',
+        headers: headers,
+        body: JSON.stringify(option)
+    }).then((res) => res.json())
+}
 
 export function deletePost(postId) {
     return fetch(`${baseUrl}/posts/${postId}`, {

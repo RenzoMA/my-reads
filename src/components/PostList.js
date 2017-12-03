@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from './../actions';
-import { PostView } from './PostView';
+import PostView from './PostView';
 import Snackbar from 'material-ui/Snackbar';
 import PostListHeader from './PostListHeader';
 import PostCreateDialog from './PostCreateDialog';
@@ -49,7 +49,9 @@ class PostList extends Component {
             };
         }, 3000)
     }
-
+    onPostVoteChanged = () => {
+        
+    }
     render() {
         const { posts } = this.props;
         const { categoryName } = this.props.match.params;
