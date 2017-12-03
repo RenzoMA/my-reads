@@ -1,4 +1,4 @@
-# My Reads
+# Readable
 Content and comment web app. The project was developed using _React_ and it uses an _API_ provided by **Udacity** to persist the information as we interact with the application.
 ## Getting Started
 ### Dependencies
