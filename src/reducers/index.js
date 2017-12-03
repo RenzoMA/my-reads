@@ -57,6 +57,7 @@ export function reducer(state = initialState, action) {
             }
         }
         case actions.SORT_POSTS: {
+            debugger;
             return {
                 ...state,
                 posts: action.payload
